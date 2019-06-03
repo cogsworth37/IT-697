@@ -2,11 +2,13 @@ from grovepi import *
 from grove_rgb_lcd import *
 import time
 from functions import *
+from mqtt.mqtt_client import MqttClient
 
 dht_sensor_port = 7
 
 while True:
   try:
+    mqtt = MqttClient("localhost")
     time.sleep(1)
     [ temp,hum ] = dht(dht_sensor_port,0)		#Get the temperature and Humidity from the DHT sensor
     #print("temp =", temp, "C\thumidity =", hum,"%") 
@@ -15,6 +17,7 @@ while True:
     bgColors = setBackgroundColor(temp) 
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
     setText_norefresh(output)
+    mqtt.post('hello/world', output)
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")
