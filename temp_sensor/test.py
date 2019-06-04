@@ -22,7 +22,7 @@ class TemperatureSensorTests(unittest.TestCase):
         self.assertEqual(result, { "red": 0, "green": 128, "blue": 64 })
     def test_background_warm(self):
         """
-        Test the background is blue when warm
+        Test the background is green when warm
         """
 
         data = 70
@@ -31,7 +31,7 @@ class TemperatureSensorTests(unittest.TestCase):
 
     def test_background_hot(self):
         """
-        Test the background is blue when hot
+        Test the background is red when hot
         """
 
         data = 90

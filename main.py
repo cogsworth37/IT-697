@@ -1,7 +1,7 @@
 from grovepi import *
 from grove_rgb_lcd import *
 import time
-from functions import *
+from temp_sensor.functions import *
 from mqtt.mqtt_client import MqttClient
 
 dht_sensor_port = 7
