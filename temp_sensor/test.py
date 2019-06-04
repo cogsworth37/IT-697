@@ -47,15 +47,26 @@ class TemperatureSensorTests(unittest.TestCase):
         result = setBackgroundColor(data)
         self.assertEqual(result, { "red": 255, "green": 255, "blue": 0})
 
-    def test_set_text(self):
+    def test_set_output(self):
         """
         Test the text if the temp and humidity are valid
         """
 
         temp = 32
         hum = 65
-        result = setText(temp, hum)
+        result = setOutput(temp, hum)
         self.assertEqual(result, "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%")
+
+    def test_set_output_json(self):
+        """
+        Test the text if the temp and humidity are valid. Return JSON
+        """
+
+        temp = 32
+        hum = 65
+        ts = str(datetime.datetime.now())
+        result = setOutput(temp, hum, "json", timestamp = ts)
+        self.assertEqual(result, {'timestamp': ts, 'temperature': temp, 'humidity': hum})
 
 
 if __name__ == '__main__':

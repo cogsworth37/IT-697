@@ -1,4 +1,5 @@
 import json
+import datetime
 
 def cToF(temp):
     """
@@ -21,12 +22,14 @@ def setBackgroundColor(temp):
 
     return colors
 
-def setOutput(temp, hum):
+def setOutput(temp, hum, type = "string", timestamp = None):
     """
     Check to see if the Temp and Hum are valid and then return the text
     Else return Error
     """
-    if temp and hum:
+    if temp and hum and type == "string":
         return "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
+    elif temp and hum and type == "json":
+        return {'timestamp': timestamp, 'temperature': temp, 'humidity': hum}
     else:
         return "ERROR"

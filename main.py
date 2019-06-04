@@ -1,6 +1,7 @@
 from grovepi import *
 from grove_rgb_lcd import *
 import time
+import datetime
 from temp_sensor.functions import *
 from mqtt.mqtt_client import MqttClient
 
@@ -17,7 +18,8 @@ while True:
     bgColors = setBackgroundColor(temp) 
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
     setText_norefresh(setOutput(temp, hum))
-    mqtt.post('hello/world', setOutput(temp, hum))
+    mqtt.post('SNHU/IT697/sensor/data', setOutput(temp, hum))
+    mqtt.post('SNHU/IT697/sensor/data/json', setOutput(temp, hum, "json", str(datetime.datetime.now())))
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")
