@@ -43,7 +43,7 @@ class TemperatureSensorTests(unittest.TestCase):
         Test the background in case of an error
         """
 
-        data = None
+        data = float('nan')
         result = setBackgroundColor(data)
         self.assertEqual(result, { "red": 255, "green": 255, "blue": 0})
 
