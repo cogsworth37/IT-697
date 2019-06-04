@@ -23,7 +23,10 @@ while True:
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
     setText_norefresh(setOutput(tempF, hum))
     mqtt.post('SNHU/IT697/andy_quangvan_snhu_edu/sensor/data', setOutput(temp, hum))
-    mqtt.post('SNHU/IT697/andy_quangvan_snhu_edu/sensor/data/json', setOutput(temp, hum, "json", str(time.time()), rotary_angle=angle))
+    mqtt.post(
+      'SNHU/IT697/andy_quangvan_snhu_edu/sensor/data/json', 
+      setOutput(temp, hum, "json", str(time.time()), rotary_angle=angle)
+      )
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")
