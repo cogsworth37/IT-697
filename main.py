@@ -9,17 +9,17 @@ dht_sensor_port = 7
 
 while True:
   try:
-    mqtt = MqttClient("localhost")
+    mqtt = MqttClient("test.mosquitto.org")
     time.sleep(1)
     [ temp,hum ] = dht(dht_sensor_port,0)		#Get the temperature and Humidity from the DHT sensor
     #print("temp =", temp, "C\thumidity =", hum,"%") 
-    temp = cToF(temp)
+    tempF = cToF(temp)
     # output = "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
     bgColors = setBackgroundColor(temp) 
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
-    setText_norefresh(setOutput(temp, hum))
-    mqtt.post('SNHU/IT697/sensor/data', setOutput(temp, hum))
-    mqtt.post('SNHU/IT697/sensor/data/json', setOutput(temp, hum, "json", str(datetime.datetime.now())))
+    setText_norefresh(setOutput(tempF, hum))
+    mqtt.post('SNHU/IT697/andy_quangvan_snhu_edu/sensor/data', setOutput(temp, hum))
+    mqtt.post('SNHU/IT697/andy_quangvan_snhu_edu/sensor/data/json', setOutput(temp, hum, "json", str(time.time())))
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")

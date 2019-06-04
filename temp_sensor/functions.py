@@ -30,6 +30,6 @@ def setOutput(temp, hum, type = "string", timestamp = None):
     if temp and hum and type == "string":
         return "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
     elif temp and hum and type == "json":
-        return {'timestamp': timestamp, 'temperature': temp, 'humidity': hum}
+        return json.dumps({'timestamp': timestamp, 'temperature': temp, 'humidity': hum})
     else:
         return "ERROR"
