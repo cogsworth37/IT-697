@@ -16,8 +16,8 @@ while True:
     # output = "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
     bgColors = setBackgroundColor(temp) 
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
-    setText_norefresh(setText(temp, hum))
-    mqtt.post('hello/world', setText(temp, hum))
+    setText_norefresh(setOutput(temp, hum))
+    mqtt.post('hello/world', setOutput(temp, hum))
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")
@@ -26,5 +26,5 @@ while True:
     setText("")
     break
   except (IOError, TypeError) as e:
-    print e 
+    print(e)
 

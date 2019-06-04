@@ -21,7 +21,7 @@ def setBackgroundColor(temp):
 
     return colors
 
-def setText(temp, hum):
+def setOutput(temp, hum):
     """
     Check to see if the Temp and Hum are valid and then return the text
     Else return Error
