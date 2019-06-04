@@ -13,11 +13,11 @@ while True:
     [ temp,hum ] = dht(dht_sensor_port,0)		#Get the temperature and Humidity from the DHT sensor
     #print("temp =", temp, "C\thumidity =", hum,"%") 
     temp = cToF(temp)
-    output = "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
+    # output = "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
     bgColors = setBackgroundColor(temp) 
     setRGB(bgColors['red'], bgColors['green'], bgColors['blue'])
-    setText_norefresh(output)
-    mqtt.post('hello/world', output)
+    setText_norefresh(setText(temp, hum))
+    mqtt.post('hello/world', setText(temp, hum))
   except KeyboardInterrupt:
     setRGB(100,100,100)
     setText("Goodbye!")

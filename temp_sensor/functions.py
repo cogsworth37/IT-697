@@ -20,3 +20,13 @@ def setBackgroundColor(temp):
         colors = { "red": 255, "green": 255, "blue": 0}
 
     return colors
+
+def setText(temp, hum):
+    """
+    Check to see if the Temp and Hum are valid and then return the text
+    Else return Error
+    """
+    if temp and hum:
+        return "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
+    else:
+        return "ERROR"

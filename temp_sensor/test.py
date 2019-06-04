@@ -47,6 +47,16 @@ class TemperatureSensorTests(unittest.TestCase):
         result = setBackgroundColor(data)
         self.assertEqual(result, { "red": 255, "green": 255, "blue": 0})
 
+    def test_set_text(self):
+        """
+        Test the text if the temp and humidity are valid
+        """
+
+        temp = 32
+        hum = 65
+        result = setText(temp, hum)
+        self.assertEqual(result, "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%")
+
 
 if __name__ == '__main__':
     unittest.main()
