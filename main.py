@@ -6,9 +6,12 @@ from temp_sensor.functions import *
 from mqtt.mqtt_client import MqttClient
 
 dht_sensor_port = 7
+potentiometer = 0
 
 while True:
   try:
+    angle = grovepi.analogRead(potentiometer)
+    print(angle)
     mqtt = MqttClient("test.mosquitto.org")
     time.sleep(1)
     [ temp,hum ] = dht(dht_sensor_port,0)		#Get the temperature and Humidity from the DHT sensor
