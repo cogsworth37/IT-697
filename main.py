@@ -7,6 +7,7 @@ from mqtt.mqtt_client import MqttClient
 
 dht_sensor_port = 7
 potentiometer = 0
+ultrasonic_ranger = 8
 
 mqtt = MqttClient("test.mosquitto.org")
 
@@ -14,6 +15,7 @@ while True:
   try:
     angle = analogRead(potentiometer)
     # print(angle)
+    distance = ultrasonicRead(ultrasonic_ranger)
     time.sleep(1)
     [ temp,hum ] = dht(dht_sensor_port,0)		#Get the temperature and Humidity from the DHT sensor
     #print("temp =", temp, "C\thumidity =", hum,"%") 
@@ -25,7 +27,7 @@ while True:
     mqtt.post('SNHU/IT697/andy_quangvan_snhu_edu/sensor/data', setOutput(temp, hum))
     mqtt.post(
       'SNHU/IT697/andy_quangvan_snhu_edu/sensor/data/json', 
-      setOutput(temp, hum, "json", str(time.time()), rotary_angle=angle)
+      setOutput(temp, hum, "json", str(time.time()), rotary_angle=angle, dist = distance)
       )
   except KeyboardInterrupt:
     setRGB(100,100,100)
