@@ -38,6 +38,15 @@ class TemperatureSensorTests(unittest.TestCase):
         result = setBackgroundColor(data)
         self.assertEqual(result, { "red": 255, "green": 0, "blue": 0 })
 
+    def test_background_error(self):
+        """
+        Test the background in case of an error
+        """
+
+        data = None
+        result = setBackgroundColor(data)
+        self.assertEqual(result, { "red": 255, "green": 255, "blue": 0})
+
 
 if __name__ == '__main__':
     unittest.main()

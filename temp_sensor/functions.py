@@ -16,5 +16,7 @@ def setBackgroundColor(temp):
         colors = { "red": 0, "green": 255, "blue": 0 }
     elif temp > 85:
         colors = { "red": 255, "green": 0, "blue": 0 }
+    else:
+        colors = { "red": 255, "green": 255, "blue": 0}
 
     return colors
