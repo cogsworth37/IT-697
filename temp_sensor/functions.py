@@ -22,7 +22,7 @@ def setBackgroundColor(temp):
 
     return colors
 
-def setOutput(temp, hum, type = "string", timestamp = None, rotary_angle=None, distance = None):
+def setOutput(temp, hum, type = "string", timestamp = None, rotary_angle=None, dist = None):
     """
     Check to see if the Temp and Hum are valid and then return the text
     Else return Error
@@ -30,6 +30,6 @@ def setOutput(temp, hum, type = "string", timestamp = None, rotary_angle=None, d
     if temp and hum and type == "string":
         return "Temp:" + str(temp) + "F\nHumidity: " + str(hum) + "%"
     elif temp and hum and type == "json":
-        return json.dumps({'timestamp': timestamp, 'temperature': temp, 'humidity': hum, 'rotary_angle': rotary_angle, 'distance': distance})
+        return json.dumps({'timestamp': timestamp, 'temperature': temp, 'humidity': hum, 'rotary_angle': rotary_angle, 'distance': dist})
     else:
         return "ERROR"
