@@ -6,5 +6,3 @@ class RotaryAngleSensor:
 
     def read(self):
         return analogRead(self.digital_port)
-
-    
