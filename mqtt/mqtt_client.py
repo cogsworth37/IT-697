@@ -13,6 +13,9 @@ class MqttClient:
         self.local_client.connect(self.host)
         self.local_client.loop_start()
         print("Connected to MQTT Server")
+    
+    def getClient(self):
+        return self.local_client
 
     def post(self, queue, message):
         self.local_client.publish(queue, message)
