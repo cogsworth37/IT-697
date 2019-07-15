@@ -4,19 +4,20 @@ import time
 import datetime
 from temp_sensor.functions import *
 from mqtt.mqtt_client import MqttClient
-from uuid import generateUuid
+from generateUuid import generateUuid
 
 dht_sensor_port = 7
 potentiometer = 0
 ultrasonic_ranger = 8
 
 mqtt = MqttClient("test.mosquitto.org")
-
+topic = "SNHU/IT697/sensor/data/" + generateUuid()
+print(topic)
 while True:
     try:
-        angle = analogRead(potentiometer)
+        # angle = analogRead(potentiometer)
         # print(angle)
-        distance = ultrasonicRead(ultrasonic_ranger)
+        # distance = ultrasonicRead(ultrasonic_ranger)
         time.sleep(1)
         [temp, hum] = dht(
             dht_sensor_port, 0
@@ -27,8 +28,6 @@ while True:
         bgColors = setBackgroundColor(temp)
         setRGB(bgColors["red"], bgColors["green"], bgColors["blue"])
         setText_norefresh(setOutput(tempF, hum))
-        topic = "SNHU/IT697/sensor/data/" + generateUuid()
-        print(topic)
         mqtt.post(topic, setOutput(temp, hum))
         mqtt.post(
             topic + "json",
